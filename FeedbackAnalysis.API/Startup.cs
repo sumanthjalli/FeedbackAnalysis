@@ -20,6 +20,7 @@ namespace FeedbackAnalysis.API
         {
             Configuration = configuration;
         }
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         public IConfiguration Configuration { get; }
 
@@ -27,6 +28,14 @@ namespace FeedbackAnalysis.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder.WithOrigins("http://products.rp.com");
+                    });
+            });
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -44,6 +53,7 @@ namespace FeedbackAnalysis.API
             }
 
             app.UseSwagger();
+            app.UseCors(MyAllowSpecificOrigins);
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
             // specifying the Swagger JSON endpoint.
