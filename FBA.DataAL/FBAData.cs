@@ -107,6 +107,7 @@ namespace FBA.DataAL
                         question.ProductId = reader.IsDBNull(1) ? 0 : reader.GetInt32(1);
                         question.questionDescription = reader.IsDBNull(2) ? "" : reader.GetString(2);
                         question.questionType = reader.IsDBNull(3) ? "" : reader.GetString(3);
+                        question.FeedBackCategoryId = reader.IsDBNull(4) ? 0 : reader.GetInt32(4);
 
                         productQuestions.Add(question);
                     }
