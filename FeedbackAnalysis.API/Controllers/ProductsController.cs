@@ -6,7 +6,8 @@ using Microsoft.Extensions.Configuration;
 
 namespace FeedbackAnalysis.API.Controllers
 {
-    [Produces("application/json")]    
+    [Produces("application/json")]
+    [Route("api/[controller]")]
     public class ProductsController : Controller
     {
 
