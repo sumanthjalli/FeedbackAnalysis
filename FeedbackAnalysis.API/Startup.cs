@@ -33,7 +33,7 @@ namespace FeedbackAnalysis.API
                 options.AddPolicy(MyAllowSpecificOrigins,
                     builder =>
                     {
-                        builder.WithOrigins("http://products.rp.com");
+                        builder.WithOrigins("http://products.rp.com", "http://feedbackform.rp.com");
                     });
             });
 
