@@ -58,6 +58,7 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Tables" />
+    <Folder Include="Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\FeedBack.sql" />
@@ -66,5 +67,8 @@
     <Build Include="Tables\ProductQuestions.sql" />
     <Build Include="Tables\User.sql" />
     <Build Include="Tables\UserRating.sql" />
+    <Build Include="Stored Procedures\AddFeedBack.sql" />
+    <Build Include="Stored Procedures\GetProducts.sql" />
+    <Build Include="Stored Procedures\SP_GetProductQuestions.sql" />
   </ItemGroup>
 </Project>
