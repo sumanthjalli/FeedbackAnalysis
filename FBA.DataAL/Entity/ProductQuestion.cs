@@ -10,5 +10,6 @@ namespace FBA.DataAL.Entity
         public int ProductId { get; set; }
         public string questionDescription { get; set; }
         public string questionType { get; set; }
+        public int FeedBackCategoryId { get; set; }
     }
 }

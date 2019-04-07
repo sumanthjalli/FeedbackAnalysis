@@ -13,6 +13,41 @@ namespace FBA.DataAL
         {
             var configurationBuilder = new ConfigurationBuilder();
         }
+
+        public bool SaveFeedback(int FeedBackCategoryId, int UserId,int ProductId,string FeedBackDesc,int FeedBackIndex, string conStr)
+        {
+            bool result = false;
+            try
+            {
+
+
+                // Creating Connection 
+                using (SqlConnection con = new SqlConnection(conStr))
+                {
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = con;
+                    command.Parameters.Add("@FeedBackCategoryId", SqlDbType.Int).Value = FeedBackCategoryId;
+                    command.Parameters.Add("@UserId", SqlDbType.Int).Value = UserId;
+                    command.Parameters.Add("@ProductId", SqlDbType.Int).Value = ProductId;
+                    command.Parameters.Add("@FeedBackDesc", SqlDbType.NVarChar).Value = FeedBackDesc;
+                    command.Parameters.Add("@FeedBackIndex", SqlDbType.Int).Value = FeedBackIndex;
+                    command.CommandText = "AddFeedBack";
+                    command.CommandType = CommandType.StoredProcedure;
+                    con.Open();
+                    bool res = command.ExecuteNonQuery() > 0 ? true : false;
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                result = false;
+            }
+            return result;
+
+        }
+
+
         public List<Product> GetProductDetails(string conStr)
         {
             List<Product> products = new List<Product>();
@@ -106,11 +141,11 @@ namespace FBA.DataAL
                         //Console.WriteLine("{0}: {1:C}", reader[0], reader[1]);
                         FeedBack fb = new FeedBack();
                         fb.FeedBackId = Convert.ToInt32(reader["FeedBackId"]);
-                        fb.CategoryDesc = reader["CategoryDesc"].ToString();
-                        fb.UserName = reader["UserName"].ToString();
-                        fb.ProductName = reader["ProductName"].ToString();
-                        fb.FeedBackDesc = reader["FeedBackDesc"].ToString();
-                        fb.FeedBackIndex = Convert.ToDecimal(reader["FeedBackIndex"]);
+                        //fb.CategoryDesc = reader["CategoryDesc"].ToString();
+                        //fb.UserName = reader["UserName"].ToString();
+                        //fb.ProductName = reader["ProductName"].ToString();
+                        //fb.FeedBackDesc = reader["FeedBackDesc"].ToString();
+                        //fb.FeedBackIndex = Convert.ToDecimal(reader["FeedBackIndex"]);
                         feedback.Add(fb);
                     }
                 }
