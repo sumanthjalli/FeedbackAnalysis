@@ -28,6 +28,14 @@ namespace FeedbackAnalysis.API.Controllers
         }
 
         [HttpGet]
+        [Route("GetProductFeedbackAnalysis")]
+        public IEnumerable<ProductFeedbackAnalysis> GetProductFeedbackAnalysis()
+        {
+            string conStr = _iconfiguration.GetValue<string>("FBASetting:ConnectionString");
+            return fbaBObj.GetProductFeedbackAnalysisDetails(conStr);
+        }
+
+        [HttpGet]
         [Route("GetProductQuestions")]
         public IEnumerable<ProductQuestion> GetProductQuestions(int productId=0)
         {

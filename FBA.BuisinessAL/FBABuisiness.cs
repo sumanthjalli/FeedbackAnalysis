@@ -20,6 +20,10 @@ namespace FBA.BuisinessAL
         {
             return fbaDObj.GetProductDetails(conStr);
         }
+        public List<ProductFeedbackAnalysis> GetProductFeedbackAnalysisDetails(string conStr)
+        {
+            return fbaDObj.GetProductFeedbackAnalysisDetails(conStr);
+        }
 
         public async System.Threading.Tasks.Task<bool> SaveFeedbackDetailsAsync(IList<FeedBack> feedback,string ConStr)
         {

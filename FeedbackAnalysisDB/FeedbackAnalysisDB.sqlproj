@@ -70,5 +70,6 @@
     <Build Include="Stored Procedures\AddFeedBack.sql" />
     <Build Include="Stored Procedures\GetProducts.sql" />
     <Build Include="Stored Procedures\SP_GetProductQuestions.sql" />
+    <Build Include="Stored Procedures\SP_GetProductFeedBackAnalysis.sql" />
   </ItemGroup>
 </Project>

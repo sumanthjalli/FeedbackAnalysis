@@ -84,6 +84,43 @@ namespace FBA.DataAL
             //string val = conStr;
         }
 
+        public List<ProductFeedbackAnalysis> GetProductFeedbackAnalysisDetails(string conStr)
+        {
+            List<ProductFeedbackAnalysis> products = new List<ProductFeedbackAnalysis>();
+            // Creating Connection 
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = con;
+                command.CommandText = "SP_GetProductFeedBackAnalysis";
+                command.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        //Console.WriteLine("{0}: {1:C}", reader[0], reader[1]);
+                        ProductFeedbackAnalysis pr = new ProductFeedbackAnalysis();
+                        pr.ProductName = reader["ProductName"].ToString();
+                        pr.CategoryDesc = reader["CategoryDesc"].ToString();
+                        pr.PosCnt = Convert.ToDouble(reader["PosCnt"]);
+                        pr.NegCnt = Convert.ToDouble(reader["NegCnt"]);
+                        pr.TotalCnt= Convert.ToDouble(reader["TotalCnt"]);
+                        products.Add(pr);
+                    }
+                }
+                else
+                {
+                    //Handle custom message
+                }
+                reader.Close();
+            }
+            return products;
+            //string val = conStr;
+        }
+
         public List<ProductQuestion> GetProductQuestionSList(string conStr, int productId)
         {
             List<ProductQuestion> productQuestions = new List<ProductQuestion>();
