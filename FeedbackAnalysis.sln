@@ -5,9 +5,15 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeedbackAnalysis.API", "FeedbackAnalysis.API\FeedbackAnalysis.API.csproj", "{482CAEF8-0AAB-4884-A9D1-06DF964D8EF4}"
 EndProject
+<<<<<<< .merge_file_a13420
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FBA.BuisinessAL", "..\FBAMaster\FBA.BuisinessAL\FBA.BuisinessAL.csproj", "{70FB6909-FB76-45ED-A086-73114AFDE7D8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FBA.DataAL", "..\FBAMaster\FBA.DataAL\FBA.DataAL.csproj", "{717B5FF5-CDAE-46BA-987E-881760D0A5EB}"
+=======
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FBA.BuisinessAL", "FBA.BuisinessAL\FBA.BuisinessAL.csproj", "{AA9DE29B-5F6E-4944-A5AF-8AFC8DA50DD9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FBA.DataAL", "FBA.DataAL\FBA.DataAL.csproj", "{086E6396-9842-4B73-9FA4-B4D035C357C9}"
+>>>>>>> .merge_file_a03832
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +25,7 @@ Global
 		{482CAEF8-0AAB-4884-A9D1-06DF964D8EF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{482CAEF8-0AAB-4884-A9D1-06DF964D8EF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{482CAEF8-0AAB-4884-A9D1-06DF964D8EF4}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< .merge_file_a13420
 		{70FB6909-FB76-45ED-A086-73114AFDE7D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{70FB6909-FB76-45ED-A086-73114AFDE7D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70FB6909-FB76-45ED-A086-73114AFDE7D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +34,16 @@ Global
 		{717B5FF5-CDAE-46BA-987E-881760D0A5EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{717B5FF5-CDAE-46BA-987E-881760D0A5EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{717B5FF5-CDAE-46BA-987E-881760D0A5EB}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{AA9DE29B-5F6E-4944-A5AF-8AFC8DA50DD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA9DE29B-5F6E-4944-A5AF-8AFC8DA50DD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA9DE29B-5F6E-4944-A5AF-8AFC8DA50DD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA9DE29B-5F6E-4944-A5AF-8AFC8DA50DD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{086E6396-9842-4B73-9FA4-B4D035C357C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{086E6396-9842-4B73-9FA4-B4D035C357C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{086E6396-9842-4B73-9FA4-B4D035C357C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{086E6396-9842-4B73-9FA4-B4D035C357C9}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> .merge_file_a03832
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

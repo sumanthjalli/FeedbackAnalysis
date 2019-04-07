@@ -20,12 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
-=======
-    <ProjectReference Include="..\FBA.BuisinessAL\FBA.BuisinessAL.csproj" />
-    <ProjectReference Include="..\FBA.DataAL\FBA.DataAL.csproj" />
->>>>>>> master
   </ItemGroup>
 
 </Project>

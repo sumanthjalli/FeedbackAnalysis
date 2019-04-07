@@ -5,27 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\FBAController.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
-    <PackageReference Include="Swashbuckle" Version="4.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
-=======
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FBA.BuisinessAL\FBA.BuisinessAL.csproj" />
     <ProjectReference Include="..\FBA.DataAL\FBA.DataAL.csproj" />
->>>>>>> master
   </ItemGroup>
 
 </Project>
