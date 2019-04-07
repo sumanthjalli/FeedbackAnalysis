@@ -7,11 +7,10 @@ using FBA.DataAL.Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
-namespace FeedbackAnalysis.Controllers
+namespace FBAMaster.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    public class FeedbackController : ControllerBase
+    public class FBAController : Controller
     {
         IConfiguration _iconfiguration;
         public FBAController(IConfiguration iconfiguration)
