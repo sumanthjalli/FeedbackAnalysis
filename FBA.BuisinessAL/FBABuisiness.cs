@@ -12,6 +12,10 @@ namespace FBA.BuisinessAL
         {
              return fbaDObj.GetFeedBackAnalysis(conStr);
         }
+        public List<Product> GetProductDetails(string conStr)
+        {
+            return fbaDObj.GetProductDetails(conStr);
+        }
         public bool AddFeedBackAnalysisCategory(string conStr,string text)
         {
             return fbaDObj.AddFeedBackAnalysisCategory(conStr,text);

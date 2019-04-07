@@ -13,6 +13,40 @@ namespace FBA.DataAL
         {
             var configurationBuilder = new ConfigurationBuilder();
         }
+        public List<Product> GetProductDetails(string conStr)
+        {
+            List<Product> products = new List<Product>();
+            // Creating Connection 
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = con;
+                command.CommandText = "GetProducts";
+                command.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        //Console.WriteLine("{0}: {1:C}", reader[0], reader[1]);
+                        Product pr = new Product();
+                        pr.ProductId = Convert.ToInt32(reader["ProductId"]);
+                        pr.ProductName = reader["ProductName"].ToString();
+
+                        products.Add(pr);
+                    }
+                }
+                else
+                {
+                    //Handle custom message
+                }
+                reader.Close();
+            }
+            return products;
+            //string val = conStr;
+        }
         public List<FeedBack> GetFeedBackAnalysis(string conStr)
         {
             List<FeedBack> feedback = new List<FeedBack>();
