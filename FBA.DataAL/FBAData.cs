@@ -26,7 +26,7 @@ namespace FBA.DataAL
                 {
                     SqlCommand command = new SqlCommand();
                     command.Connection = con;
-                    command.Parameters.Add("@questionId", SqlDbType.Int).Value = FeedBackCategoryId;
+                    command.Parameters.Add("@FeedBackCategoryId", SqlDbType.Int).Value = FeedBackCategoryId;
                     command.Parameters.Add("@UserId", SqlDbType.Int).Value = UserId;
                     command.Parameters.Add("@ProductId", SqlDbType.Int).Value = ProductId;
                     command.Parameters.Add("@FeedBackDesc", SqlDbType.NVarChar).Value = FeedBackDesc;
