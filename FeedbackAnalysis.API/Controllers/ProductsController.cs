@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using FBA.BuisinessAL;
 using FBA.DataAL.Entity;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
 namespace FeedbackAnalysis.API.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/Products")]
+    [Produces("application/json")]    
     public class ProductsController : Controller
     {
 
@@ -24,10 +19,19 @@ namespace FeedbackAnalysis.API.Controllers
         FBABuisiness fbaBObj = new FBABuisiness();
 
         [HttpGet]
-        public IEnumerable<Product> GetProducts(string test = "")
+        [Route("GetProducts")]
+        public IEnumerable<Product> GetProducts()
         {
             string conStr = _iconfiguration.GetValue<string>("FBASetting:ConnectionString");
             return fbaBObj.GetProductDetails(conStr);
+        }
+
+        [HttpGet]
+        [Route("GetProductQuestions")]
+        public IEnumerable<ProductQuestion> GetProductQuestions(int productId=0)
+        {
+            string conStr = _iconfiguration.GetValue<string>("FBASetting:ConnectionString");
+            return fbaBObj.GetProductQuestionSList(conStr, productId);
         }
     }
 }

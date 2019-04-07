@@ -10,15 +10,21 @@ namespace FBA.BuisinessAL
         FBAData fbaDObj = new FBAData();
         public List<FeedBack> GetFeedBackAnalysis(string conStr)
         {
-             return fbaDObj.GetFeedBackAnalysis(conStr);
+            return fbaDObj.GetFeedBackAnalysis(conStr);
         }
         public List<Product> GetProductDetails(string conStr)
         {
             return fbaDObj.GetProductDetails(conStr);
         }
-        public bool AddFeedBackAnalysisCategory(string conStr,string text)
+
+        public List<ProductQuestion> GetProductQuestionSList(string conStr, int productId)
         {
-            return fbaDObj.AddFeedBackAnalysisCategory(conStr,text);
+            return fbaDObj.GetProductQuestionSList(conStr, productId);
+        }
+
+        public bool AddFeedBackAnalysisCategory(string conStr, string text)
+        {
+            return fbaDObj.AddFeedBackAnalysisCategory(conStr, text);
         }
         public bool AddFeedBackAnalysis(string conStr, FBEntry fbDataObj)
         {
@@ -33,7 +39,7 @@ namespace FBA.BuisinessAL
             int id = 0;
 
             //TO-DO//Need to write Algo to Identify Category of feedback
-            if(fbText.Contains("payment"))
+            if (fbText.Contains("payment"))
             {
                 id = 1;
             }
@@ -42,7 +48,7 @@ namespace FBA.BuisinessAL
                 id = 2;
             }
             //
-           return id;
+            return id;
         }
 
         private float AnalyseFeedBackSentiment(string fbText)

@@ -47,6 +47,45 @@ namespace FBA.DataAL
             return products;
             //string val = conStr;
         }
+
+        public List<ProductQuestion> GetProductQuestionSList(string conStr, int productId)
+        {
+            List<ProductQuestion> productQuestions = new List<ProductQuestion>();
+            // Creating Connection 
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = con;
+                command.CommandText = "SP_GetProductQuestions";
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@productid", SqlDbType.Int).Value = productId;
+                con.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        //Console.WriteLine("{0}: {1:C}", reader[0], reader[1]);
+                        ProductQuestion question = new ProductQuestion();
+                        question.questionId = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
+                        question.ProductId = reader.IsDBNull(1) ? 0 : reader.GetInt32(1);
+                        question.questionDescription = reader.IsDBNull(2) ? "" : reader.GetString(2);
+                        question.questionType = reader.IsDBNull(3) ? "" : reader.GetString(3);
+
+                        productQuestions.Add(question);
+                    }
+                }
+                else
+                {
+                    //Handle custom message
+                }
+                reader.Close();
+            }
+            return productQuestions;
+            //string val = conStr;
+        }
+
         public List<FeedBack> GetFeedBackAnalysis(string conStr)
         {
             List<FeedBack> feedback = new List<FeedBack>();
@@ -133,6 +172,5 @@ namespace FBA.DataAL
                 return res;
             }
         }
-
     }
 }
