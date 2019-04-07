@@ -17,3 +17,15 @@ body {
 #feedbackForm {
     padding-top: 3%;
 }
+
+.checkedStar {
+    color: orange;
+  }
+  
+  .fa-star{
+    border: 1px solid grey;
+      border-radius: 5px;
+      background-color: antiquewhite;
+      cursor: pointer;
+      margin-right: 0.5%;
+  }

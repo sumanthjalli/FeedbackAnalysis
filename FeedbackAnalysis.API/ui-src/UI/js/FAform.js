@@ -25,6 +25,19 @@ function DOMLoaded() {
         }
     });
 
+    $('.fa-star').click(function(e) {
+        var currentEle = $(e.currentTarget),
+            rating = currentEle.data('star');
+
+        $('.fa-star').removeClass('checkedStar');
+        $('.fa-star').each(function(i, val) {
+            if ($(val).data('star') <= rating) {
+                $(val).addClass('checkedStar');
+            }
+        });
+        $('#rating').val(rating);
+    });
+
 
 
 
@@ -34,7 +47,7 @@ function DOMLoaded() {
             feedbackHtml += feedbackCmplTmpl({
                 feedbackItem: {
                     qText: item.questionDescription,
-                    questionId: item.questionId,
+                    feedBackCategoryId: item.feedBackCategoryId,
                     productId: item.productId,
                     questionType: item.questionType
                 }
@@ -63,39 +76,35 @@ function DOMLoaded() {
         formElel = $('div[name="formItem"]');
         formElel.each(function(i, val) {
             currentItem = {
-                productId: productId,
-                questionId: $(val).data('qstnid'),
-                response: {
-                    val: $(val).find('input[type=radio]:checked').val(),
-                    text: $(val).find('textarea').val()
-                }
+                ProductId: productId,
+                FeedBackCategoryId: $(val).data('qstnid'),
+                FeedBackIndex: $(val).find('input[type=radio]:checked').val(),
+                FeedBackDesc: $(val).find('textarea').val(),
+                StarRating: parseInt($('#rating').val())
             }
             data.push(currentItem);
         });
 
-
         currentItem = {
-            productId: productId,
-            questionId: "others",
-            response: {
-                val: null,
-                text: $('#txtOthers').val()
-            }
+            ProductId: productId,
+            FeedBackCategoryId: 6,
+            FeedBackIndex: 0,
+            FeedBackDesc: $('#txtOthers').val(),
+            StarRating: parseInt($('#rating').val())
         };
 
         data.push(currentItem);
 
-        // $.ajax({
-        //     type: "POST",
-        //     url: url,
-        //     data: data,
-        //     contentType: "application/json;",
-        //     success: successFun,
-        // });
+        $.ajax({
+            type: "POST",
+            url: curremtDomain + "/api/Feedback/SaveFeedback?v=" + Date.now(),
+            data: { '': data },
+            success: successFun
+        });
 
     });
 
     function successFun() {
-
     }
+
 }
