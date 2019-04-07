@@ -1,0 +1,18 @@
+################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/FeedbackAnalysis/.vs/FeedbackAnalysis/v15
+/FeedbackAnalysis/bin
+/FeedbackAnalysis/obj
+/FeedbackAnalysis/FeedbackAnalysis.sln.DotSettings.user
+*.user
+/.vs
+/CIMPLSettingsDB/CIMPLSettingsDB/bin
+.idea
+.vscode/settings.json
+bin/
+obj/
+*.user
+/.vs
+
