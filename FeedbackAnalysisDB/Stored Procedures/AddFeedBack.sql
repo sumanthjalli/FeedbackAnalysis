@@ -2,19 +2,21 @@
 @FeedBackCategoryId int,
 @UserId int = null,
 @ProductId int,
-@FeedBackDesc varchar(MAX),
-@FeedBackIndex int
+@FeedBackDesc varchar(MAX) = null,
+@FeedBackIndex int,
+@StarRating int
 AS
 INSERT INTO [dbo].[FeedBack]
            ([FeedBackCategoryId]
            ,[UserId]
            ,[ProductId]
            ,[FeedBackDesc]
-           ,[FeedBackIndex])
+           ,[FeedBackIndex]
+		   ,[StarRating])
      VALUES
            (@FeedBackCategoryId
            ,@UserId
            ,@ProductId
            ,@FeedBackDesc
-           ,@FeedBackIndex)
-GO
+           ,@FeedBackIndex
+		   ,@StarRating)
