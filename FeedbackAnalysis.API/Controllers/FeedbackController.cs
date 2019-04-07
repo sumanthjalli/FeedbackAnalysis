@@ -23,7 +23,7 @@ namespace FeedbackAnalysis.API.Controllers
 
         [HttpPost]
         [Route("SaveFeedback")]
-        public async System.Threading.Tasks.Task<bool> SaveFeedback(List<FeedBack> feedbacks)
+        public async System.Threading.Tasks.Task<bool> SaveFeedback([FromBody]List<FeedBack> feedbacks)
         {
           string conStr = _iconfiguration.GetValue<string>("FBASetting:ConnectionString");
           return  await fbaBObj.SaveFeedbackDetailsAsync(feedbacks, conStr);

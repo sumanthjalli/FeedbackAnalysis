@@ -14,7 +14,7 @@ namespace FBA.DataAL
             var configurationBuilder = new ConfigurationBuilder();
         }
 
-        public bool SaveFeedback(int FeedBackCategoryId, int UserId,int ProductId,string FeedBackDesc,int FeedBackIndex, string conStr)
+        public bool SaveFeedback(int FeedBackCategoryId, int UserId,int ProductId,string FeedBackDesc,int FeedBackIndex,int StarRating, string conStr)
         {
             bool result = false;
             try
@@ -31,6 +31,7 @@ namespace FBA.DataAL
                     command.Parameters.Add("@ProductId", SqlDbType.Int).Value = ProductId;
                     command.Parameters.Add("@FeedBackDesc", SqlDbType.NVarChar).Value = FeedBackDesc;
                     command.Parameters.Add("@FeedBackIndex", SqlDbType.Int).Value = FeedBackIndex;
+                    command.Parameters.Add("@StarRating", SqlDbType.Int).Value = StarRating;
                     command.CommandText = "AddFeedBack";
                     command.CommandType = CommandType.StoredProcedure;
                     con.Open();
