@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeedbackAnalysis", "FeedbackAnalysis\FeedbackAnalysis.csproj", "{70309AA1-DE49-46B7-A303-EAEE85D00402}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeedbackAnalysis.API", "FeedbackAnalysis.API\FeedbackAnalysis.API.csproj", "{482CAEF8-0AAB-4884-A9D1-06DF964D8EF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{70309AA1-DE49-46B7-A303-EAEE85D00402}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{70309AA1-DE49-46B7-A303-EAEE85D00402}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{70309AA1-DE49-46B7-A303-EAEE85D00402}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70309AA1-DE49-46B7-A303-EAEE85D00402}.Release|Any CPU.Build.0 = Release|Any CPU
+		{482CAEF8-0AAB-4884-A9D1-06DF964D8EF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{482CAEF8-0AAB-4884-A9D1-06DF964D8EF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{482CAEF8-0AAB-4884-A9D1-06DF964D8EF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{482CAEF8-0AAB-4884-A9D1-06DF964D8EF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {4BA5A94F-1B9F-4F1C-8469-E04AFA5A2F2D}
+		SolutionGuid = {BEFA7289-5789-4BA2-A1E8-42D2B409E5DE}
 	EndGlobalSection
 EndGlobal
