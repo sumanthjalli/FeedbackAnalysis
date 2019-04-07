@@ -39,7 +39,7 @@ namespace FBA.BuisinessAL
                     client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", endpointKey);
 
                     // The "q" parameter contains the utterance to send to LUIS
-                    queryString["q"] = "product is good";
+                    queryString["q"] = item.FeedBackDesc;
 
                     // These optional request parameters are set to their default values
                     queryString["timezoneOffset"] = "0";
@@ -84,11 +84,11 @@ namespace FBA.BuisinessAL
                             FeedBackCategoryId = 6;
                             break;
                     }
-                    fbaDObj.SaveFeedback(FeedBackCategoryId, item.ProductId, item.ProductId, FeedBackDesc, item.FeedBackIndex, ConStr);                  
+                    fbaDObj.SaveFeedback(FeedBackCategoryId, item.ProductId, item.ProductId, FeedBackDesc, item.FeedBackIndex, item.StarRating, ConStr);                  
                 }
                 else
                 {
-                    fbaDObj.SaveFeedback(item.FeedBackCategoryId, item.ProductId, item.ProductId, item.FeedBackDesc, item.FeedBackIndex, ConStr);
+                    fbaDObj.SaveFeedback(item.FeedBackCategoryId, item.ProductId, item.ProductId, item.FeedBackDesc, item.FeedBackIndex, item.StarRating, ConStr);
                 }
             }
 
