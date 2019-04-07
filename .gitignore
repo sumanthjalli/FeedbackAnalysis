@@ -1,6 +1,15 @@
 ################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.dbmdl
+*.jfm
+*.cache
+*.props
 
 /FeedbackAnalysis/.vs/FeedbackAnalysis/v15
 /FeedbackAnalysis/bin
