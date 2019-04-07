@@ -57,34 +57,41 @@ function DOMLoaded() {
 
     $('#feedbackPost').click(function() {
         var url = '',
-            data = {
-                productId : productId,
-                qstnDetails : {}
-            },
+            data = [],
             currentItem;
 
         formElel = $('div[name="formItem"]');
         formElel.each(function(i, val) {
             currentItem = {
                 productId: productId,
-                details: {
-                    questionId: $(val).data('qstnId'),
-                    response:{
-                        val: $(val).find('input[type=radio]:checked').val(),
-                        text : $(val).find('textarea').val()
-                    }
+                questionId: $(val).data('qstnid'),
+                response: {
+                    val: $(val).find('input[type=radio]:checked').val(),
+                    text: $(val).find('textarea').val()
                 }
             }
-            data.qstnDetails.add(currentItem);
+            data.push(currentItem);
         });
 
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: data,
-            contentType: "application/json;",
-            success: successFun,
-        });
+
+        currentItem = {
+            productId: productId,
+            questionId: "others",
+            response: {
+                val: null,
+                text: $('#txtOthers').val()
+            }
+        };
+
+        data.push(currentItem);
+
+        // $.ajax({
+        //     type: "POST",
+        //     url: url,
+        //     data: data,
+        //     contentType: "application/json;",
+        //     success: successFun,
+        // });
 
     });
 
