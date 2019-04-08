@@ -58,9 +58,9 @@ function DOMLoaded() {
         $('.feedbackOption').click(function(e) {
             var eleTarget = e.currentTarget,
                 eleName = e.currentTarget.name;
-            if (eleTarget.value === "1") {
+            if (eleTarget.value === "10") {
                 $('#' + eleName).parent('div').addClass('hide').removeClass('show');
-            } else if (eleTarget.value === "0") {
+            } else if (eleTarget.value === "1") {
                 $('#' + eleName).parent('div').addClass('show').removeClass('hide');
             }
         });

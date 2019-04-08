@@ -12,6 +12,7 @@ function DOMLoaded() {
         dataType: "json",
         success: function(response) {
             FA = response;
+            FA =  [{ "productName": "Leasing and Renting", "categoryDesc": "Additional Features Needed", "posCnt": 50.0, "negCnt": 50.0, "totalCnt": 100.0, "productId": 1, "categoryId": 4 }, { "productName": "Leasing and Renting", "categoryDesc": "Ease Of Use", "posCnt": 0.0, "negCnt": 100.0, "totalCnt": 100.0, "productId": 1, "categoryId": 1 }, { "productName": "Leasing and Renting", "categoryDesc": "Others", "posCnt": 50.0, "negCnt": 50.0, "totalCnt": 100.0, "productId": 1, "categoryId": 6 }, { "productName": "Leasing and Renting", "categoryDesc": "Product Requirements", "posCnt": 100.0, "negCnt": 0.0, "totalCnt": 100.0, "productId": 1, "categoryId": 2 }, { "productName": "Leasing and Renting", "categoryDesc": "Quality Of support ", "posCnt": 0.0, "negCnt": 100.0, "totalCnt": 100.0, "productId": 1, "categoryId": 3 }, { "productName": "Leasing and Renting", "categoryDesc": "Suggestions", "posCnt": 0.0, "negCnt": 100.0, "totalCnt": 100.0, "productId": 1, "categoryId": 5 }, { "productName": "One Site ", "categoryDesc": "Additional Features Needed", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 2, "categoryId": 4 }, { "productName": "One Site ", "categoryDesc": "Ease Of Use", "posCnt": 0.0, "negCnt": 100.0, "totalCnt": 100.0, "productId": 2, "categoryId": 1 }, { "productName": "One Site ", "categoryDesc": "Others", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 2, "categoryId": 6 }, { "productName": "One Site ", "categoryDesc": "Product Requirements", "posCnt": 0.0, "negCnt": 100.0, "totalCnt": 100.0, "productId": 2, "categoryId": 2 }, { "productName": "One Site ", "categoryDesc": "Quality Of support ", "posCnt": 0.0, "negCnt": 100.0, "totalCnt": 100.0, "productId": 2, "categoryId": 3 }, { "productName": "One Site ", "categoryDesc": "Suggestions", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 2, "categoryId": 5 }, { "productName": "Accounting", "categoryDesc": "Additional Features Needed", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 3, "categoryId": 4 }, { "productName": "Accounting", "categoryDesc": "Ease Of Use", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 3, "categoryId": 1 }, { "productName": "Accounting", "categoryDesc": "Others", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 3, "categoryId": 6 }, { "productName": "Accounting", "categoryDesc": "Product Requirements", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 3, "categoryId": 2 }, { "productName": "Accounting", "categoryDesc": "Quality Of support ", "posCnt": 0.0, "negCnt": 100.0, "totalCnt": 100.0, "productId": 3, "categoryId": 3 }, { "productName": "Accounting", "categoryDesc": "Suggestions", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 3, "categoryId": 5 }, { "productName": "Student Housing ", "categoryDesc": "Additional Features Needed", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 4, "categoryId": 4 }, { "productName": "Student Housing ", "categoryDesc": "Ease Of Use", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 4, "categoryId": 1 }, { "productName": "Student Housing ", "categoryDesc": "Others", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 4, "categoryId": 6 }, { "productName": "Student Housing ", "categoryDesc": "Product Requirements", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 4, "categoryId": 2 }, { "productName": "Student Housing ", "categoryDesc": "Quality Of support ", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 4, "categoryId": 3 }, { "productName": "Student Housing ", "categoryDesc": "Suggestions", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 4, "categoryId": 5 }, { "productName": "Utility Invoice Processing ", "categoryDesc": "Additional Features Needed", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 5, "categoryId": 4 }, { "productName": "Utility Invoice Processing ", "categoryDesc": "Ease Of Use", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 5, "categoryId": 1 }, { "productName": "Utility Invoice Processing ", "categoryDesc": "Others", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 5, "categoryId": 6 }, { "productName": "Utility Invoice Processing ", "categoryDesc": "Product Requirements", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 5, "categoryId": 2 }, { "productName": "Utility Invoice Processing ", "categoryDesc": "Quality Of support ", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 5, "categoryId": 3 }, { "productName": "Utility Invoice Processing ", "categoryDesc": "Suggestions", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 5, "categoryId": 5 }, { "productName": "Spend Management ", "categoryDesc": "Additional Features Needed", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 6, "categoryId": 4 }, { "productName": "Spend Management ", "categoryDesc": "Ease Of Use", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 6, "categoryId": 1 }, { "productName": "Spend Management ", "categoryDesc": "Others", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 6, "categoryId": 6 }, { "productName": "Spend Management ", "categoryDesc": "Product Requirements", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 6, "categoryId": 2 }, { "productName": "Spend Management ", "categoryDesc": "Quality Of support ", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 6, "categoryId": 3 }, { "productName": "Spend Management ", "categoryDesc": "Suggestions", "posCnt": 0.0, "negCnt": 0.0, "totalCnt": 0.0, "productId": 6, "categoryId": 5 }];
             categories = getUniQueCategories();
             $.ajax({
                 url: curremtDomain + "/api/Products/GetProducts?v=" + Date.now(),
@@ -48,12 +49,13 @@ function DOMLoaded() {
         var data1 = [
             []
         ];
-        //     [9, 7, 8],
-        //     [14, 10, 11],
-        //     [9, 11, 12],
-        //     [8, 6, 9],
-        //     [9, 11, 12]
+             //[9, 7, 8],
+             //[14, 10, 11],
+             //[9, 11, 12],
+             //[8, 6, 9],
+             //[9, 11, 12]
         // ];
+        //[10,10,10]
         var catLen = categories.length - 1;
 
 
@@ -66,8 +68,11 @@ function DOMLoaded() {
                 data1[ind].push(val.totalCnt);
             }
         });
-
-
+        data1 = [[10, 10, 10],
+            [10, 10, 10],
+            [10, 10, 10],
+            [10, 10, 10],
+            [10, 10, 10]];
 
         var tooltips = [];
 
