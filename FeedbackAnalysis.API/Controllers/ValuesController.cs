@@ -2,33 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FBA.BuisinessAL;
-using FBA.DataAL.Entity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 
 namespace FeedbackAnalysis.API.Controllers
 {
     [Route("api/[controller]")]
-    public class FeedbackController : Controller
+    public class ValuesController : Controller
     {
-
-        IConfiguration _iconfiguration;
-        public FeedbackController(IConfiguration iconfiguration)
-        {
-            _iconfiguration = iconfiguration;
-        }
-
-        FBABuisiness fbaBObj = new FBABuisiness();
-
-        [HttpPost]
-        [Route("SaveFeedback")]
-        public async System.Threading.Tasks.Task<bool> SaveFeedback(List<FeedBack> feedbacks)
-        {
-          string conStr = _iconfiguration.GetValue<string>("FBASetting:ConnectionString");
-          return  await fbaBObj.SaveFeedbackDetailsAsync(feedbacks, conStr);
-        }
-
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()

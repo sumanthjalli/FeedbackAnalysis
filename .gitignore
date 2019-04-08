@@ -7,7 +7,6 @@
 *.jfm
 *.cache
 *.props
-*/storage.ide
 
 StyleCop.Cache
 
