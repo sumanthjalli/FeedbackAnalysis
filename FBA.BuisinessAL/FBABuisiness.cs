@@ -115,7 +115,11 @@ namespace FBA.BuisinessAL
         {
             return fbaDObj.GetCompitatorsFeedBackDetails(conStr, featureID);
         }
-
+        public List<GetProductFeedBackDetails> GetProductFeedBackDetails(string conStr)
+        {
+            return fbaDObj.GetProductFeedBackDetails(conStr);
+        }
+        
         public bool AddFeedBackAnalysisCategory(string conStr, string text)
 
         {
