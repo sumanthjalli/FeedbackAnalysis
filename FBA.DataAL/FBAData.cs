@@ -163,6 +163,49 @@ namespace FBA.DataAL
         }
 
 
+        public List<GetProductFeedBackDetails> GetProductFeedBackDetails(string conStr)
+        {
+            List<GetProductFeedBackDetails> productQuestions = new List<GetProductFeedBackDetails>();
+            // Creating Connection 
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = con;
+                command.CommandText = "SP_GetProductFeedBackDetails";
+                command.CommandType = CommandType.StoredProcedure;
+                //command.Parameters.Add("@FeatureId", SqlDbType.Int).Value = featureID;
+                con.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        GetProductFeedBackDetails obj = new GetProductFeedBackDetails();
+                        obj.FeedbackCategoryid = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
+                        obj.CategoryDesc = reader.IsDBNull(1) ? "" : reader.GetString(1);
+                        obj.featureID = reader.IsDBNull(2) ? 0 : reader.GetInt32(2);
+                        obj.FeatureName = reader.IsDBNull(3) ? "" : reader.GetString(3);
+                        obj.feedbackDesc = reader.IsDBNull(4) ? "" : reader.GetString(4);                     
+
+                        obj.rating = reader.IsDBNull(5) ? 0 : reader.GetDouble(5);
+                        //obj.ranking = reader.IsDBNull(6) ? 0 : reader.GetInt32(6);
+                        obj.AvgVal = reader.IsDBNull(7) ? 0 : reader.GetDouble(7);
+                        productQuestions.Add(obj);
+                    }
+                }
+                else
+                {
+                    //Handle custom message
+                }
+                reader.Close();
+            }
+            return productQuestions;
+            //string val = conStr;
+        }
+
+
+
         public List<ProductCompitator> GetCompitatorsFeedBackDetails(string conStr, int featureID)
         {
             List<ProductCompitator> productQuestions = new List<ProductCompitator>();
