@@ -14,7 +14,7 @@ namespace FBA.DataAL
             var configurationBuilder = new ConfigurationBuilder();
         }
 
-        public bool SaveFeedback(int FeedBackCategoryId, int UserId,int ProductId,string FeedBackDesc,int FeedBackIndex,int StarRating, string conStr)
+        public bool SaveFeedback(int FeedBackCategoryId, int UserId, int ProductId, string FeedBackDesc, int FeedBackIndex, int StarRating, string conStr)
         {
             bool result = false;
             try
@@ -105,11 +105,11 @@ namespace FBA.DataAL
                         ProductFeedbackAnalysis pr = new ProductFeedbackAnalysis();
                         pr.ProductName = reader["ProductName"].ToString();
                         pr.CategoryDesc = reader["CategoryDesc"].ToString();
-                        pr.ProductId= Convert.ToInt32(reader["ProductId"].ToString());
-                        pr.CategoryId= Convert.ToInt32(reader["CategoryId"].ToString());
+                        pr.ProductId = Convert.ToInt32(reader["ProductId"].ToString());
+                        pr.CategoryId = Convert.ToInt32(reader["CategoryId"].ToString());
                         pr.PosCnt = Convert.ToDouble(reader["PosCnt"]);
                         pr.NegCnt = Convert.ToDouble(reader["NegCnt"]);
-                        pr.TotalCnt= Convert.ToDouble(reader["TotalCnt"]);
+                        pr.TotalCnt = Convert.ToDouble(reader["TotalCnt"]);
                         products.Add(pr);
                     }
                 }
@@ -150,6 +150,53 @@ namespace FBA.DataAL
                         question.FeedBackCategoryId = reader.IsDBNull(4) ? 0 : reader.GetInt32(4);
 
                         productQuestions.Add(question);
+                    }
+                }
+                else
+                {
+                    //Handle custom message
+                }
+                reader.Close();
+            }
+            return productQuestions;
+            //string val = conStr;
+        }
+
+
+        public List<ProductCompitator> GetCompitatorsFeedBackDetails(string conStr, int featureID)
+        {
+            List<ProductCompitator> productQuestions = new List<ProductCompitator>();
+            // Creating Connection 
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = con;
+                command.CommandText = "SP_GetCompitatorsFeedBackDetails";
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@FeatureId", SqlDbType.Int).Value = featureID;
+                con.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        ProductCompitator obj = new ProductCompitator();
+                        obj.FeedbackCategoryid = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
+                        obj.CategoryDesc = reader.IsDBNull(1) ? "" : reader.GetString(1);
+                        obj.featureID = reader.IsDBNull(2) ? 0 : reader.GetInt32(2);
+                        obj.FeatureName = reader.IsDBNull(3) ? "" : reader.GetString(3);
+                        obj.ProductId = reader.IsDBNull(4) ? 0 : reader.GetInt32(4);
+
+                        obj.ProductName = reader.IsDBNull(5) ? "" : reader.GetString(5);
+                        obj.CompanyId = reader.IsDBNull(6) ? 0 : reader.GetInt32(6);
+                        obj.CompanyName = reader.IsDBNull(7) ? "" : reader.GetString(7);
+                        obj.feedbackDesc = reader.IsDBNull(8) ? "" : reader.GetString(8);
+                        obj.rating = reader.IsDBNull(9) ? 0 : reader.GetDouble(9);
+                        //obj.ranking = reader.IsDBNull(10) ? 0 : reader.GetInt32(10);
+                        obj.AvgVal = reader.IsDBNull(11) ? 0 : reader.GetDouble(11);
+
+                        productQuestions.Add(obj);
                     }
                 }
                 else

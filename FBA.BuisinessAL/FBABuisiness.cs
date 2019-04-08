@@ -25,7 +25,7 @@ namespace FBA.BuisinessAL
             return fbaDObj.GetProductFeedbackAnalysisDetails(conStr);
         }
 
-        public async System.Threading.Tasks.Task<bool> SaveFeedbackDetailsAsync(IList<FeedBack> feedback,string ConStr)
+        public async System.Threading.Tasks.Task<bool> SaveFeedbackDetailsAsync(IList<FeedBack> feedback, string ConStr)
         {
             foreach (var item in feedback)
             {
@@ -94,6 +94,7 @@ namespace FBA.BuisinessAL
                             break;
                     }
                     fbaDObj.SaveFeedback(FeedBackCategoryId, item.ProductId, item.ProductId, FeedBackDesc, fbscore1, item.StarRating, ConStr);                  
+
                 }
                 else
                 {
@@ -108,9 +109,14 @@ namespace FBA.BuisinessAL
         {
             return fbaDObj.GetProductQuestionSList(conStr, productId);
         }
-        
 
-        public bool AddFeedBackAnalysisCategory(string conStr,string text)
+
+        public List<ProductCompitator> GetCompitatorsFeedBackDetails(string conStr, int featureID)
+        {
+            return fbaDObj.GetCompitatorsFeedBackDetails(conStr, featureID);
+        }
+
+        public bool AddFeedBackAnalysisCategory(string conStr, string text)
 
         {
             return fbaDObj.AddFeedBackAnalysisCategory(conStr, text);
