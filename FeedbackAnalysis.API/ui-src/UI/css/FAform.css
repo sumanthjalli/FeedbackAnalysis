@@ -1,0 +1,35 @@
+body {
+    width: 80%;
+    margin: 1% auto;
+    border: 1px solid #e5e5e8;
+    padding: 1%;
+    border-radius: 8px;
+}
+
+.container {
+    text-align: center;
+}
+
+.feebackForm {
+    margin: 2%;
+}
+
+#feedbackForm {
+    padding-top: 3%;
+}
+
+.checkedStar {
+    color: orange;
+  }
+  
+  .fa-star{
+    border: 1px solid grey;
+      border-radius: 5px;
+      background-color: antiquewhite;
+      cursor: pointer;
+      margin-right: 0.5%;
+  }
+
+  .bs-example{
+    margin: 20px;
+}

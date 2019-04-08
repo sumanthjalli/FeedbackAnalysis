@@ -1,7 +1,11 @@
 ﻿using FBA.DataAL;
 using FBA.DataAL.Entity;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Web;
 
 namespace FBA.BuisinessAL
 {
@@ -10,11 +14,116 @@ namespace FBA.BuisinessAL
         FBAData fbaDObj = new FBAData();
         public List<FeedBack> GetFeedBackAnalysis(string conStr)
         {
-             return fbaDObj.GetFeedBackAnalysis(conStr);
+            return fbaDObj.GetFeedBackAnalysis(conStr);
         }
-        public bool AddFeedBackAnalysisCategory(string conStr,string text)
+        public List<Product> GetProductDetails(string conStr)
         {
-            return fbaDObj.AddFeedBackAnalysisCategory(conStr,text);
+            return fbaDObj.GetProductDetails(conStr);
+        }
+        public List<ProductFeedbackAnalysis> GetProductFeedbackAnalysisDetails(string conStr)
+        {
+            return fbaDObj.GetProductFeedbackAnalysisDetails(conStr);
+        }
+
+        public async System.Threading.Tasks.Task<bool> SaveFeedbackDetailsAsync(IList<FeedBack> feedback, string ConStr)
+        {
+            foreach (var item in feedback)
+            {
+                if (item.FeedBackCategoryId == 6)
+                {
+                    ApiResponse apiResponse = new ApiResponse();
+                    var client = new HttpClient();
+                    var queryString = HttpUtility.ParseQueryString(string.Empty);
+
+                    // This app ID is for a public sample app that recognizes requests to turn on and turn off lights
+                    var luisAppId = "cb041e70-b76b-4dcb-ba94-b6802dbe0d92";
+                    var endpointKey = "4429d8a6623b45a5b04cfb36742bc354";
+
+                    // The request header contains your subscription key
+                    client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", endpointKey);
+
+                    // The "q" parameter contains the utterance to send to LUIS
+                    queryString["q"] = item.FeedBackDesc.ToLower();
+
+                    // These optional request parameters are set to their default values
+                    queryString["timezoneOffset"] = "0";
+                    queryString["verbose"] = "false";
+                    queryString["spellCheck"] = "false";
+                    queryString["staging"] = "false";
+
+                    var endpointUri = "https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/" + luisAppId + "?" + queryString;
+                    //var endpointUri = "https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/cb041e70-b76b-4dcb-ba94-b6802dbe0d92?verbose=true&timezoneOffset=-360&subscription-key=4429d8a6623b45a5b04cfb36742bc354&q=Its%20good%20all";
+                    var response = await client.GetAsync(endpointUri);
+
+                    //var strResponseContent = await response.Content.ReadAsStringAsync();
+                    var apiResponse1 = await response.Content.ReadAsStringAsync();
+
+                    var data = (JObject)JsonConvert.DeserializeObject(apiResponse1);
+                    //JObject json = JObject.Parse(apiResponse1.ToString());
+
+                    string FeedBackDesc = data["query"].Value<string>();
+                    //string sentimentAnalysis = data["label"].Value<string>();
+                    //string rssTitles = (string)json["sentimentAnalysis"]["label"];
+                    string rssTitle = data["sentimentAnalysis"]["label"].Value<string>();
+                    string fbScore = data["sentimentAnalysis"]["score"].Value<string>();
+                    int fbscore1 = Convert.ToInt32(decimal.Parse(fbScore) * 10);
+                    string topScoringIntent = data["topScoringIntent"]["intent"].Value<string>();
+                    int FeedBackCategoryId;
+                    switch (topScoringIntent.ToLower())
+                    {
+                        case "in.review.easeofuse":
+                            FeedBackCategoryId = 1;
+                            break;
+                        case "in.review.helpful":
+                        case "in.review.featureadd":
+                        case "review.requirement":
+                            FeedBackCategoryId = 2;
+                            break;                    
+                        case "in.review.support ":
+                            FeedBackCategoryId = 3;
+                            break;
+                        case "in.review.constructive":
+                        case "in.review.suggestions":
+                            FeedBackCategoryId = 4;
+                            break;
+                        case "in.review.critical":
+                            FeedBackCategoryId = 5;
+                            break;
+                        default:
+                            FeedBackCategoryId = 6;
+                            break;
+                    }
+                    fbaDObj.SaveFeedback(FeedBackCategoryId, item.ProductId, item.ProductId, FeedBackDesc, fbscore1, item.StarRating, ConStr);                  
+
+                }
+                else
+                {
+                    fbaDObj.SaveFeedback(item.FeedBackCategoryId, item.ProductId, item.ProductId, item.FeedBackDesc, item.FeedBackIndex, item.StarRating, ConStr);
+                }
+            }
+
+            return true;
+        }
+
+        public List<ProductQuestion> GetProductQuestionSList(string conStr, int productId)
+        {
+            return fbaDObj.GetProductQuestionSList(conStr, productId);
+        }
+
+
+        public List<ProductCompitator> GetCompitatorsFeedBackDetails(string conStr, int featureID)
+        {
+            return fbaDObj.GetCompitatorsFeedBackDetails(conStr, featureID);
+        }
+        public List<GetProductFeedBackDetails> GetProductFeedBackDetails(string conStr)
+        {
+            return fbaDObj.GetProductFeedBackDetails(conStr);
+        }
+        
+        public bool AddFeedBackAnalysisCategory(string conStr, string text)
+
+        {
+            return fbaDObj.AddFeedBackAnalysisCategory(conStr, text);
         }
         public bool AddFeedBackAnalysis(string conStr, FBEntry fbDataObj)
         {
@@ -29,7 +138,7 @@ namespace FBA.BuisinessAL
             int id = 0;
 
             //TO-DO//Need to write Algo to Identify Category of feedback
-            if(fbText.Contains("payment"))
+            if (fbText.Contains("payment"))
             {
                 id = 1;
             }
@@ -38,7 +147,7 @@ namespace FBA.BuisinessAL
                 id = 2;
             }
             //
-           return id;
+            return id;
         }
 
         private float AnalyseFeedBackSentiment(string fbText)
