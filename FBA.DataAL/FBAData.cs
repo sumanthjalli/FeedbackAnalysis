@@ -105,6 +105,8 @@ namespace FBA.DataAL
                         ProductFeedbackAnalysis pr = new ProductFeedbackAnalysis();
                         pr.ProductName = reader["ProductName"].ToString();
                         pr.CategoryDesc = reader["CategoryDesc"].ToString();
+                        pr.ProductId= Convert.ToInt32(reader["ProductId"].ToString());
+                        pr.CategoryId= Convert.ToInt32(reader["CategoryId"].ToString());
                         pr.PosCnt = Convert.ToDouble(reader["PosCnt"]);
                         pr.NegCnt = Convert.ToDouble(reader["NegCnt"]);
                         pr.TotalCnt= Convert.ToDouble(reader["TotalCnt"]);

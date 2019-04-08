@@ -11,5 +11,7 @@ namespace FBA.DataAL.Entity
         public double PosCnt { get; set; }
         public double NegCnt { get; set; }
         public double TotalCnt { get; set; }
+        public int ProductId { get; set; }
+        public int CategoryId { get; set; }
     }
 }
