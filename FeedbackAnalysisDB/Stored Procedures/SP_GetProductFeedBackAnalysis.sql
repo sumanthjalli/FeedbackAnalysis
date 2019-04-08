@@ -27,7 +27,7 @@ select ProductName,CategoryDesc,ProductId,CategoryId,
 (cast( (Cast(SUM(CASE WHEN Flag = 1 THEN 1 ELSE 0 END) as  decimal(10,2)) * 100)/Count(*) as decimal(10,2)) ) + (Cast( (Cast(SUM(CASE WHEN Flag = 0 THEN 1 ELSE 0 END) as  decimal(10,2)) * 100)/Count(*) as decimal(10,2)) ) as TotalCnt 
 from #Temp
 Group By ProductName, CategoryDesc,ProductId,CategoryId
-Order By ProductName, CategoryDesc
+Order By Productid,ProductName, CategoryDesc
 
 Drop table #Temp
 
