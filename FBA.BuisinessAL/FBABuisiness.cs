@@ -65,6 +65,8 @@ namespace FBA.BuisinessAL
                     //string sentimentAnalysis = data["label"].Value<string>();
                     //string rssTitles = (string)json["sentimentAnalysis"]["label"];
                     string rssTitle = data["sentimentAnalysis"]["label"].Value<string>();
+                    string fbScore = data["sentimentAnalysis"]["score"].Value<string>();
+                    
                     string topScoringIntent = data["topScoringIntent"]["intent"].Value<string>();
                     int FeedBackCategoryId;
                     switch (topScoringIntent.ToLower())
