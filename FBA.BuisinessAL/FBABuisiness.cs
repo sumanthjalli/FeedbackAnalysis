@@ -25,7 +25,7 @@ namespace FBA.BuisinessAL
             return fbaDObj.GetProductFeedbackAnalysisDetails(conStr);
         }
 
-        public async System.Threading.Tasks.Task<bool> SaveFeedbackDetailsAsync(IList<FeedBack> feedback,string ConStr)
+        public async System.Threading.Tasks.Task<bool> SaveFeedbackDetailsAsync(IList<FeedBack> feedback, string ConStr)
         {
             foreach (var item in feedback)
             {
@@ -66,7 +66,7 @@ namespace FBA.BuisinessAL
                     //string rssTitles = (string)json["sentimentAnalysis"]["label"];
                     string rssTitle = data["sentimentAnalysis"]["label"].Value<string>();
                     string fbScore = data["sentimentAnalysis"]["score"].Value<string>();
-                    
+
                     string topScoringIntent = data["topScoringIntent"]["intent"].Value<string>();
                     int FeedBackCategoryId;
                     switch (topScoringIntent.ToLower())
@@ -90,7 +90,7 @@ namespace FBA.BuisinessAL
                             FeedBackCategoryId = 6;
                             break;
                     }
-                    fbaDObj.SaveFeedback(FeedBackCategoryId, item.ProductId, item.ProductId, FeedBackDesc, item.FeedBackIndex, item.StarRating, ConStr);                  
+                    fbaDObj.SaveFeedback(FeedBackCategoryId, item.ProductId, item.ProductId, FeedBackDesc, item.FeedBackIndex, item.StarRating, ConStr);
                 }
                 else
                 {
@@ -105,9 +105,14 @@ namespace FBA.BuisinessAL
         {
             return fbaDObj.GetProductQuestionSList(conStr, productId);
         }
-        
 
-        public bool AddFeedBackAnalysisCategory(string conStr,string text)
+
+        public List<ProductCompitator> GetCompitatorsFeedBackDetails(string conStr, int featureID)
+        {
+            return fbaDObj.GetCompitatorsFeedBackDetails(conStr, featureID);
+        }
+
+        public bool AddFeedBackAnalysisCategory(string conStr, string text)
 
         {
             return fbaDObj.AddFeedBackAnalysisCategory(conStr, text);
