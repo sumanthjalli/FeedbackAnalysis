@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 2em auto;
+        }
+        
+        .box {
+            margin-bottom: 30px;
+            height: 150px;
+            background: #eaeaea;
+            border: 1px solid #babaf1;
+            border-radius: 8px;
+            text-align: center;
+            padding: 18%;
+            cursor: pointer;
+        }
+        
+        .compareproducts {
+            padding-left: 44%;
+            padding-bottom: 31px;
+        }
+    </style>
+    <title>Products</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <script src="jquery.min.js"></script>
+    <script src="underscore-min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var curremtDomain = 'http://localhost:57194';
+            var feedbackCmplTmpl = _.template($("#tmpl-product-form").html()),
+                feedbackForm = $('#feedbackForm'),
+                url = curremtDomain + "/api/Products/GetProducts?v=" + Date.now(),
+                feedbackHtml = '';
+
+
+            $.ajax({
+                url: url,
+                type: "get",
+                dataType: "json",
+                success: function(response) {
+                    response.forEach(function(item, index) {
+                        feedbackHtml += feedbackCmplTmpl({
+                            feedbackItem: {
+                                name: item.productName,
+                                id: item.productId
+                            }
+                        });
+                    });
+                    feedbackForm.html(feedbackHtml);
+
+                    $('.box').click(function(e) {
+                        var eleTarget = e.currentTarget,
+                            eleName = $(eleTarget).attr('name').split('-')[1];
+                        eleId = $(eleTarget).attr('productId');
+                        window.open('http://products.rp.com/product.html?product=' + eleName + '&id=' + eleId, '_blank');
+                    });
+                },
+                error: function(xhr, status) {
+                    alert("error");
+                }
+            });
+
+
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+
+        <div id="container">
+            <div class="row compareproducts">
+                <div class="col-md-12">
+                    <a href="http://feedbackForm.rp.com/templates/compare.html">Compare Products?</a>
+                </div>
+            </div>
+            <div class="row">
+                <script type="text/html" id="tmpl-product-form">
+                    <div class="col-sm-4">
+                        <div class="box" name="product-<%=feedbackItem.name%>" productId="<%=feedbackItem.id%>">
+                            <%=feedbackItem.name%>
+                        </div>
+                    </div>
+                </script>
+            </div>
+            <div id="feedbackForm"></div>
+        </div>
+    </div>
+</body>
+
+</html>

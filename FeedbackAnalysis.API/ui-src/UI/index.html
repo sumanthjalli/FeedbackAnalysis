@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="thirdparty/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="css/FAform.css" rel="stylesheet">
+    <script src="thirdparty/jquery.min.js"></script>
+    <script src="thirdparty/underscore-min.js"></script>
+    <script src="thirdparty/bootstrap.min.js"></script>
+    <script src="js/FAform.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <script type="text/html" id="tmpl-feedback-form">
+            <div class="row">
+                <div class="form-group col-sm-12" name="formItem" data-qstnId="<%=feedbackItem.feedBackCategoryId %>">
+                    <label><%= feedbackItem.qText %></label>
+                    <div class="row ">
+                        <div class="col-sm-4">
+                            <div class="radio-inline">
+                                <label><input type="radio" class="feedbackOption" name="qstn-<%=feedbackItem.feedBackCategoryId %>" value="10">Yes</label>
+                            </div>
+                            <div class="radio-inline">
+                                <label><input type="radio" class="feedbackOption" name="qstn-<%=feedbackItem.feedBackCategoryId %>" value="1">No</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group hide col-sm-4">
+                            <textarea class="form-control negativeResponse" name="qstn-<%=feedbackItem.feedBackCategoryId %>" rows="5" id="qstn-<%=feedbackItem.feedBackCategoryId %>" placeholder="reason..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+        <form name="feedbackForm" class="feebackForm">
+            <h3>Please provide feedback for <span id="productName"></span> product </h3>
+
+            <div id="feedbackForm">
+
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm-4">
+                    <label for="txtOthers">Others</label>
+                    <textarea class="form-control formItem" rows="5" id="txtOthers" name="txtOthers-6"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12" value="">
+                    <span class="fa fa-star fa-2x" data-star="1"></span>
+                    <span class="fa fa-star fa-2x" data-star="2"></span>
+                    <span class="fa fa-star fa-2x" data-star="3"></span>
+                    <span class="fa fa-star fa-2x" data-star="4"></span>
+                    <span class="fa fa-star fa-2x" data-star="5"></span>
+                    <input type="hidden"  id="rating" value="">
+                </div>
+            </div>
+
+
+            <input class="btn btn-primary" type="button" id="feedbackPost" value="Submit Feedback">
+        </form>
+    </div>
+
+
+
+</body>
+
+</html>

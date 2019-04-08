@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="jquery.min.js"></script>
+    <script src="http://feedback.rp.com/feedback-plugin.js"></script>
+
+    <script>
+        $(document).ready(DOMLoaded);
+
+        function DOMLoaded() {
+            let params = (new URL(document.location)).searchParams;
+            let name = params.get("product");
+            $('#productName').text(name);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <h1>This is <span id="productName"></span> product</h1>
+    </div>
+</body>
+
+</html>
