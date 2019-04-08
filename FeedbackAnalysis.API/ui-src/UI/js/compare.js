@@ -1,10 +1,18 @@
 var curremtDomain = 'http://localhost:57194',
     productList,
     FA,
-    categories;
+    categories,
+    companiesList,
+    featureIdList,
+    RPProductFeedBackDetails,
+    CompitatorsFeedBackDetails = [];
 $(document).ready(DOMLoaded);
 
 function DOMLoaded() {
+
+    var feedbackCmplTmpl = _.template($("#tmpl-charts").html()),
+        feedbackForm = $('#bs-example'),
+        feedbackHtml = '';
 
     $.ajax({
         url: curremtDomain + "/api/Products/GetProductFeedbackAnalysis?v=" + Date.now(),
@@ -32,6 +40,92 @@ function DOMLoaded() {
         }
     });
 
+    $.ajax({
+        url: curremtDomain + "/api/Products/GetProductFeedBackDetails?featureId=2&v=" + Date.now(),
+        type: "get",
+        dataType: "json",
+        success: function(response) {
+            RPProductFeedBackDetails = response;
+            featureIdList = _.uniq(_.pluck(RPProductFeedBackDetails, 'featureID'));
+            for (var i = 0; i < featureIdList.length; i++) {
+                $.ajax({
+                    url: curremtDomain + "/api/Products/GetCompitatorsFeedBackDetails?featureId=" + featureIdList[i] + "&v=" + Date.now(),
+                    type: "get",
+                    dataType: "json",
+                    async: false,
+                    success: function(i, response) {
+                        CompitatorsFeedBackDetails.push({
+                            featureId: featureIdList[i],
+                            data: response
+                        });
+                        // if (i === featureIdList.length -1) {
+                        //     renderFeatureChart();
+                        // }
+                    }.bind(this, i),
+                    error: function(xhr, status) {
+                        alert("error");
+                    }
+                });
+            }
+            renderFeatureChart();
+        },
+        error: function(xhr, status) {
+            alert("error");
+        }
+    });
+
+    function renderFeatureChart() {
+        var FeaturesNames = [];
+        var companiesNames = [];
+        var feedBackCategoryNames = [],
+            rating = [[]];
+
+        for (var i = 0; i < featureIdList.length; i++) {
+
+            var currentCompitatorsFeedBackDetails = _.filter(CompitatorsFeedBackDetails, { featureId: featureIdList[i] })[0];
+
+            var companies = [];
+            companiesNames = [];
+            companies.push(_.pluck(currentCompitatorsFeedBackDetails.data, 'companyName'));
+            for (var j = 0; j < companies[0].length; j++) {
+                companiesNames.push(companies[0][j]);
+            }
+
+            companiesNames = _.uniq(companiesNames);
+
+            FeaturesNames.push(_.first(_.filter(RPProductFeedBackDetails, {
+                featureID: featureIdList[i]
+            })).featureName);
+
+            feedBackCategoryNames = _.pluck(_.filter(RPProductFeedBackDetails, { featureID: featureIdList[i] }), 'categoryDesc');
+
+            var fList = _.filter(RPProductFeedBackDetails, { featureID: featureIdList[i] });
+            for (var z = 0; z < feedBackCategoryNames.length; z++) {
+                rating[z] = [];
+                rating[z].push(_.pluck(_.filter(fList, { categoryDesc: feedBackCategoryNames[z] }), 'rating')[0]);
+
+                for (var j = 0; j < companiesNames.length; j++) {
+                    _.pluck(_.filter(currentCompitatorsFeedBackDetails.data, { categoryDesc: feedBackCategoryNames[z] }), 'rating').forEach(function(val, i) {
+                        rating[z].push(val);
+                    });
+                }
+            }
+
+
+            feedbackHtml += feedbackCmplTmpl({
+                product: {
+                    featureName: FeaturesNames[i],
+                    Features: featureIdList,
+                    companiesNames: companiesNames,
+                    feedBackCategoryNames: feedBackCategoryNames,
+                    rating: rating
+                }
+            });
+        }
+        feedbackForm.html(feedbackHtml);
+    }
+
+
     function getUniQueCategories() {
         var category = [];
         FA.forEach(function(val, i) {
@@ -56,7 +150,7 @@ function DOMLoaded() {
         //     [9, 11, 12]
         // ];
         var catLen = categories.length,
-        j=0;
+            j = 0;
 
 
         FA.forEach(function(val, i) {
@@ -66,8 +160,7 @@ function DOMLoaded() {
             }
             if (val.totalCnt == 0) {
                 data1[ind][j % catLen] = 0;
-            }
-            else{
+            } else {
                 data1[ind][j % catLen] = 10;
             }
             j++;
