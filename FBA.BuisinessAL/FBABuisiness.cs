@@ -43,7 +43,7 @@ namespace FBA.BuisinessAL
                     client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", endpointKey);
 
                     // The "q" parameter contains the utterance to send to LUIS
-                    queryString["q"] = item.FeedBackDesc;
+                    queryString["q"] = item.FeedBackDesc.ToLower();
 
                     // These optional request parameters are set to their default values
                     queryString["timezoneOffset"] = "0";
@@ -66,31 +66,35 @@ namespace FBA.BuisinessAL
                     //string rssTitles = (string)json["sentimentAnalysis"]["label"];
                     string rssTitle = data["sentimentAnalysis"]["label"].Value<string>();
                     string fbScore = data["sentimentAnalysis"]["score"].Value<string>();
-
+                    int fbscore1 = Convert.ToInt32(decimal.Parse(fbScore) * 10);
                     string topScoringIntent = data["topScoringIntent"]["intent"].Value<string>();
                     int FeedBackCategoryId;
                     switch (topScoringIntent.ToLower())
                     {
-                        case "ease of use":
+                        case "in.review.easeofuse":
                             FeedBackCategoryId = 1;
                             break;
-                        case "product requirements":
+                        case "in.review.helpful":
+                        case "in.review.featureadd":
+                        case "review.requirement":
                             FeedBackCategoryId = 2;
-                            break;
-                        case "quality of support":
+                            break;                    
+                        case "in.review.support ":
                             FeedBackCategoryId = 3;
                             break;
-                        case "additional features needed":
+                        case "in.review.constructive":
+                        case "in.review.suggestions":
                             FeedBackCategoryId = 4;
                             break;
-                        case "suggestions":
+                        case "in.review.critical":
                             FeedBackCategoryId = 5;
                             break;
                         default:
                             FeedBackCategoryId = 6;
                             break;
                     }
-                    fbaDObj.SaveFeedback(FeedBackCategoryId, item.ProductId, item.ProductId, FeedBackDesc, item.FeedBackIndex, item.StarRating, ConStr);
+                    fbaDObj.SaveFeedback(FeedBackCategoryId, item.ProductId, item.ProductId, FeedBackDesc, fbscore1, item.StarRating, ConStr);                  
+
                 }
                 else
                 {
