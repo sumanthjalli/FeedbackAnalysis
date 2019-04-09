@@ -104,7 +104,10 @@ function DOMLoaded() {
 
     });
 
-    function successFun() {}
+    function successFun() {
+        $('.feebackForm').hide();
+        $('.successMsg').toggleClass('hide');
+    }
 
 
 

@@ -11,6 +11,8 @@ namespace FBA.DataAL.Entity
         public int featureID { get; set; }
         public string FeatureName { get; set; }
         public string feedbackDesc { get; set; }
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
         public double rating { get; set; }
         public int ranking { get; set; }
         public double AvgVal { get; set; }

@@ -186,11 +186,14 @@ namespace FBA.DataAL
                         obj.CategoryDesc = reader.IsDBNull(1) ? "" : reader.GetString(1);
                         obj.featureID = reader.IsDBNull(2) ? 0 : reader.GetInt32(2);
                         obj.FeatureName = reader.IsDBNull(3) ? "" : reader.GetString(3);
-                        obj.feedbackDesc = reader.IsDBNull(4) ? "" : reader.GetString(4);                     
+                        obj.ProductId = reader.IsDBNull(4) ? 0 : reader.GetInt32(4);
+                        obj.ProductName = reader.IsDBNull(5) ? "" : reader.GetString(5);
 
-                        obj.rating = reader.IsDBNull(5) ? 0 : reader.GetDouble(5);
+                        obj.feedbackDesc = reader.IsDBNull(6) ? "" : reader.GetString(6);                     
+
+                        obj.rating = reader.IsDBNull(7) ? 0 : reader.GetDouble(7);
                         //obj.ranking = reader.IsDBNull(6) ? 0 : reader.GetInt32(6);
-                        obj.AvgVal = reader.IsDBNull(7) ? 0 : reader.GetDouble(7);
+                        obj.AvgVal = reader.IsDBNull(9) ? 0 : reader.GetDouble(9);
                         productQuestions.Add(obj);
                     }
                 }
