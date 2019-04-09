@@ -28,6 +28,9 @@ function DOMLoaded() {
                 dataType: "json",
                 success: function(resp) {
                     productList = _.pluck(resp, 'productName');
+                    for(var i1=0;i1<productList;i1++){
+                        productList[i] = productList[i].trim().toLowerCase();
+                    }
                     renderChart();
                 },
                 error: function(xhr, status) {
@@ -154,7 +157,7 @@ function DOMLoaded() {
 
 
         FA.forEach(function(val, i) {
-            var ind = productList.indexOf(val.productName.trim());
+            var ind = productList.indexOf(val.productName);
             if (data1[ind] === undefined) {
                 data1[ind] = [];
             }
