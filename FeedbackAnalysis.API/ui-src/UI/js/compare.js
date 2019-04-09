@@ -83,7 +83,8 @@ function DOMLoaded() {
         var productNames = [];
         var companiesNames = [];
         var feedBackCategoryNames = [],
-            rating = [[]];
+            rating = [[]],
+            ratingDesc = [[]];
 
         for (var i = 0; i < featureIdList.length; i++) {
 
@@ -118,6 +119,15 @@ function DOMLoaded() {
                         rating[z].push(val);
                     });
                 }
+
+                ratingDesc[z] = [];
+                ratingDesc[z].push(_.pluck(_.filter(fList, { categoryDesc: feedBackCategoryNames[z] }), 'feedbackDesc')[0]);
+
+                for (var j = 0; j < companiesNames.length; j++) {
+                    _.pluck(_.filter(currentCompitatorsFeedBackDetails.data, { categoryDesc: feedBackCategoryNames[z] }), 'feedbackDesc').forEach(function(val, i) {
+                        ratingDesc[z].push(val);
+                    });
+                }
             }
 
 
@@ -128,7 +138,8 @@ function DOMLoaded() {
                     Features: featureIdList,
                     companiesNames: companiesNames,
                     feedBackCategoryNames: feedBackCategoryNames,
-                    rating: rating
+                    rating: rating,
+                    feedbackDesc: ratingDesc
                 }
             });
         }
