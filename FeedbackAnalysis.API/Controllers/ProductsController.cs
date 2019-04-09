@@ -50,5 +50,12 @@ namespace FeedbackAnalysis.API.Controllers
             string conStr = _iconfiguration.GetValue<string>("FBASetting:ConnectionString");
             return fbaBObj.GetCompitatorsFeedBackDetails(conStr, featureId);
         }
+        [HttpGet]
+        [Route("GetProductFeedBackDetails")]
+        public IEnumerable<GetProductFeedBackDetails> GetProductFeedBackDetails(int featureId = 0)
+        {
+            string conStr = _iconfiguration.GetValue<string>("FBASetting:ConnectionString");
+            return fbaBObj.GetProductFeedBackDetails(conStr);
+        }
     }
 }

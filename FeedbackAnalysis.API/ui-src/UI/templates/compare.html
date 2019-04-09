@@ -1,10 +1,18 @@
 <!DOCTYPE <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Compare</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        #bs-example {
+            margin: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="../thirdparty/bootstrap.min.css">
     <script src="../thirdparty/jquery.min.js"></script>
     <script src="../thirdparty/underscore-min.js"></script>
 
@@ -12,14 +20,55 @@
     <script src="../thirdparty/RGraph.svg.common.tooltips.js"></script>
     <script src="../thirdparty/RGraph.svg.common.key.js"></script>
     <script src="../thirdparty/RGraph.svg.bar.js"></script>
-    
 
-    
+    <script src="../thirdparty/bootstrap.min.js"></script>
+
     <script src="../js/compare.js"></script>
 </head>
+
 <body>
     <div style="padding: 15px">
         <div style="width: 80%; height: 500px" id="cc"></div>
     </div>
+    <div id="bs-example">
+    </div>
+
+    <script type="text/html" id="tmpl-charts">
+        <h3><b>Feature:</b>
+            <%= product.featureName %></h3>
+                <!-- <h3><b>Product Name:</b> -->
+                <!-- <%= product.productName %></h3> -->
+                <% for (var i = 0; i< product.Features.length; i++) { %>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr style="background-color:#3d9970">
+                                <th>Companies/Categories</th>
+                                <th>RealPage</th>
+                                <% for (var i = 0; i< product.companiesNames.length; i++) { %>
+                                    <th>
+                                        <%= product.companiesNames[i]%>
+                                    </th>
+                                    <%}%>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (var i = 0; i< product.feedBackCategoryNames.length; i++) { %>
+                                <tr>
+                                    <td style="background-color:#7fdbff">
+                                        <%=product.feedBackCategoryNames[i]%>
+                                    </td>
+                                    <% for (var j = 0; j< product.rating.length ; j++) { %>
+                                        <td><progress max="10" value="<%=product.rating[i][j]%>"></progress>&nbsp
+                                            <%=product.rating[i][j]%>
+                                        </td>
+                                        <%}%>
+                                </tr>
+                                <%}%>
+                        </tbody>
+                    </table>
+                    <%}%>
+    </script>
+
 </body>
+
 </html>
